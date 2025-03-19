@@ -6,7 +6,7 @@ import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
-import { Link } from "react-router-dom";
+import { Link, useNavigate} from "react-router-dom";
 import { useState } from "react";
 import api from "../axios/axios"
 
@@ -15,7 +15,7 @@ function Login() {
     email: "",
     password: "",
   });
-
+  const navigate = useNavigate();
   const onChange = (event) => {
     const { name, value } = event.target;
     setUser({ ...user, [name]: value });
@@ -30,6 +30,8 @@ function Login() {
     await api.postLogin(user).then(
       (response)=>{
         alert(response.data.message)
+        localStorage.setItem('authenticated', true)
+        navigate("users/")
       },
     (error)=>{
       console.log(error)
