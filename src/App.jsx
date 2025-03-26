@@ -11,12 +11,22 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Login />} />
-          <Route path="/users" element={<ProtectedRoute>
-            <Cadastro/>
-            </ProtectedRoute>} />
-          <Route path="/users" element={<ProtectedRoute>
-            <ListUsers/>
-          </ProtectedRoute>} />
+          <Route
+            path="/cadastro"
+            element={
+              <ProtectedRoute>
+                <Cadastro />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/users"
+            element={
+              <ProtectedRoute>
+                <ListUsers />
+              </ProtectedRoute>
+            }
+          />
         </Routes>
       </BrowserRouter>
     </div>
