@@ -7,4 +7,4 @@ const ProtectedRoute = ({children}) =>{
     <Navigate to="/" />);
     
 };
-export default ProtectedRoute
+export default ProtectedRoute;

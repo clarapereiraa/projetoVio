@@ -14,13 +14,8 @@ import { Link, useNavigate } from "react-router-dom";
 function listUsers() {
   const [users, setUsers] = useState([]);
   const [alert, setAlert] = useState({
-    //visibilidade (false = oculto; true visível)
     open: false,
-
-    //nível do alerta (sucess, error, warning, etc)
     severity: "",
-
-    //mensagem que será exibida
     message: "",
   });
   const navigate = useNavigate();
@@ -42,7 +37,7 @@ function listUsers() {
     } catch (error) {
       console.error("Erro ao buscar usuários", error);
       showAlert("error", "Erro ao buscar usuários");
-    } 
+    }
   }
 
   async function deleteUser(id) {
@@ -54,7 +49,7 @@ function listUsers() {
       console.error("Erro ao deletar usuário", error);
       showAlert(
         "error",
-        error.response.data.error 
+        error.response.data.error
       );
     }
   }
@@ -97,6 +92,7 @@ function listUsers() {
           {alert.message}
         </Alert>
       </Snackbar>
+
       {users.length === 0 ? (
         <h1>Carregando usuários</h1>
       ) : (
@@ -117,12 +113,22 @@ function listUsers() {
               <TableBody>{listUsers}</TableBody>
             </Table>
           </TableContainer>
+
+          {/* Botão SAIR */}
           <Button fullWidth variant="contained" onClick={logout}>
             SAIR
           </Button>
+
+          {/* Link para a lista de eventos */}
+          <div style={{ marginTop: "20px", textAlign: "center" }}>
+            <Link to="/evento" style={{ textDecoration: "underline", color: "#1976d2", cursor: "pointer" }}>
+              Ir para a lista de eventos
+            </Link>
+          </div>
         </div>
       )}
     </div>
   );
 }
+
 export default listUsers;
