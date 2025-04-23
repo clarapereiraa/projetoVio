@@ -45,7 +45,7 @@ function ListEventos() {
   }
 
   // Função para excluir um evento
-  async function deleteEvento(id) {
+  async function deleteEventos(id) {
     try {
       await api.deleteEventos(id);
       await getEventos();  // Recarrega os eventos após a exclusão
@@ -99,7 +99,7 @@ function ListEventos() {
                     <TableCell align="center">{evento.descricao}</TableCell>
                     <TableCell align="center">{evento.data_hora}</TableCell>
                     <TableCell align="center">
-                      <IconButton onClick={() => deleteEvento(evento.id_evento)}>
+                      <IconButton onClick={() => deleteEventos(evento.id_evento)}>
                         <DeleteIcon color="error" />
                       </IconButton>
                     </TableCell>
