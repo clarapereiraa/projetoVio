@@ -10,6 +10,7 @@ import { Button, IconButton, Alert, Snackbar } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import api from "../axios/axios";  // Certifique-se de que esse caminho esteja correto
 import { useNavigate } from "react-router-dom";
+import ModalCriarIngresso from "../components/ModalCriarIngresso";
 
 function ListEventos() {
   const [eventos, setEventos] = useState([]);
@@ -60,6 +61,19 @@ function ListEventos() {
     getEventos();  // Chama a função para buscar os eventos assim que o componente for montado
   }, []);
 
+  const [eventoSelecionado, setEventoSelecionado] = useState("");
+const [modalOpen, setModalOpen] = useState(false);
+
+const abrirModalIngresso = (evento) => {
+  setEventoSelecionado(evento);
+  setModalOpen(true);
+};
+
+const fecharModalIngresso = () => {
+  setModalOpen(false);
+  setEventoSelecionado("");
+};
+
   return (
     <div>
       <Snackbar
@@ -77,6 +91,11 @@ function ListEventos() {
         </Alert>
       </Snackbar>
 
+      <ModalCriarIngresso
+      open={modalOpen}
+      onClose={fecharModalIngresso}
+      eventoSelecionado={eventoSelecionado}/>
+
       {eventos.length === 0 ? (
         <h1>Carregando eventos...</h1>  // Mensagem enquanto os dados estão sendo carregados
       ) : (
@@ -90,6 +109,7 @@ function ListEventos() {
                   <TableCell align="center">Descrição</TableCell>
                   <TableCell align="center">Data e Hora</TableCell>
                   <TableCell align="center">Ações</TableCell>
+                  <TableCell align="center" sx={{color: "#fff"}}>Criar ingresso</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -102,6 +122,11 @@ function ListEventos() {
                       <IconButton onClick={() => deleteEventos(evento.id_evento)}>
                         <DeleteIcon color="error" />
                       </IconButton>
+                    </TableCell>
+                    <TableCell align="center">
+                    <IconButton onClick={() => abrirModalIngresso(evento)}>
+                    Adicionar 
+                    </IconButton>
                     </TableCell>
                   </TableRow>
                 ))}

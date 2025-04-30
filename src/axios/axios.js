@@ -13,6 +13,7 @@ const sheets = {
     postLogin:(user) => api.post("login/", user),
     deleteUser:(id) => api.delete("user/"+id),
     deleteEvento:(id_evento) => api.delete("evento/"+id_evento),
+    createIngresso: (ingresso) => api.post("/ingresso", ingresso),
 }
 
 export default sheets;
