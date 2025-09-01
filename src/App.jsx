@@ -6,6 +6,7 @@ import Cadastro from "./pages/Cadastro";
 import ListEventos from "./pages/listEventos";
 import ProtectedRoute from "./components/ProtectedRoute";
 import CreateEvent from "./pages/CreateEvent";
+import Dashboard from "./pages/Dashboard";
 function App() {
   return (
     <div>
@@ -33,6 +34,14 @@ function App() {
             element={
               <ProtectedRoute>
                 <ListEventos />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/dashboard"
+            element={
+              <ProtectedRoute>
+                <Dashboard />
               </ProtectedRoute>
             }
           />
